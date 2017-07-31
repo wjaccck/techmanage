@@ -57,6 +57,10 @@
 
 						<div class="portlet-body">
                         <a href="{% url 'publish-mission-create' %}" class="btn btn-success">{{ create }}</a>
+                        <a href="{% url 'mission-list' %}?status=undo" class="btn btn-info">未操作</a>
+                        <a href="{% url 'mission-list' %}?status=processing" class="btn btn-info">执行中</a>
+                        <a href="{% url 'mission-list' %}?status=done" class="btn btn-info">发布完成</a>
+                        <a href="{% url 'mission-list' %}?status=failed" class="btn btn-info">发布失败</a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
 {#							<table class="table table-striped table-hover table-bordered" id="sample_editable_1">#}

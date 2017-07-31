@@ -149,6 +149,11 @@ class Mission_ListViewSet(Base_ListViewSet):
             query_list.append(Q(type__name=type))
         except:
             pass
+        try:
+            status = self.request.GET['status']
+            query_list.append(Q(status__name=status))
+        except:
+            pass
         if query_list:
             return list(set(self.model.objects.select_related().filter(reduce(operator.and_, query_list))))
         else:
