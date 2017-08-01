@@ -166,20 +166,13 @@ class Progress_ListViewSet(Base_ListViewSet):
     paginate_by = 10
 
     def get_queryset(self):
-
-        query_list=[]
+        name=None
         try:
             name = self.request.GET['keyword']
-            query_list.append(Q(mission__id=name))
         except:
             pass
-        try:
-            type = self.request.GET['type']
-            query_list.append(Q(mission__type__name=type))
-        except:
-            pass
-        if query_list:
-            return list(set(self.model.objects.select_related().filter(reduce(operator.and_, query_list)).order_by('serial')))
+        if name:
+            return self.model.objects.filter(mission__id=name).order_by('serial')
         else:
             return self.model.objects.all()
 
