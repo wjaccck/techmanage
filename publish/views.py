@@ -275,7 +275,7 @@ def Progress_failed(req, progress_id):
                     progress.finish_date = finish_date
                     progress.last_time = ((finish_date -last_progress.finish_date).total_seconds() / 60).__int__()
                     progress.save()
-                    response = redirect('/progress/?keyword={0}'.format(progress.mission.chandao_id))
+                    response = redirect('/progress/?keyword={0}'.format(progress.mission_id))
                 else:
                     response = HttpResponseBadRequest('the last step is not done')
         else:
