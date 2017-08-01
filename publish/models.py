@@ -72,3 +72,5 @@ class Progress(CommonModel,PUBLISH_BASE):
     @staticmethod
     def verbose():
         return u'任务明细'
+    class Meta:
+        ordering=['serial']
