@@ -179,7 +179,7 @@ class Progress_ListViewSet(Base_ListViewSet):
         except:
             pass
         if query_list:
-            return list(set(self.model.objects.select_related().filter(reduce(operator.and_, query_list))))
+            return list(set(self.model.objects.select_related().filter(reduce(operator.and_, query_list)).order_by('serial')))
         else:
             return self.model.objects.all()
 
