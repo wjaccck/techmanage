@@ -130,7 +130,10 @@ class Mission_UpdateViewSet(Base_UpdateViewSet):
     form_class = forms.MissionForm
     template_name = 'api/mission_form.html'
     success_url = reverse_lazy('mission-list')
-
+    def get_form(self, data = None, files = None, **kwargs):
+        kwargs['type'] = Type.objects.get(name='publish')
+        kwargs['status'] = Status.objects.get(name='undo')
+        return super(Mission_UpdateViewSet, self).get_form(data, files, **kwargs)
 class Mission_ListViewSet(Base_ListViewSet):
     Mission.objects.all().count()
     model = Mission
