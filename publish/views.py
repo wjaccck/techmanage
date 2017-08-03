@@ -209,7 +209,7 @@ def Mission_done(req,mission_id):
             mission.finish_date = datetime.now()
             mission.last_time = ((mission.finish_date - mission.start_date).total_seconds()/60).__int__()
             mission.save()
-            response = redirect('/mission/?type=publish')
+            response = redirect('/mission/?type=publish&status=processing')
         else:
             response = HttpResponseBadRequest('already finished')
     else:
@@ -224,7 +224,7 @@ def Mission_failed(req, mission_id):
             mission.finish_date = datetime.now()
             mission.last_time = ((mission.finish_date - mission.start_date).total_seconds()/60).__int__()
             mission.save()
-            response = redirect('/mission/?type=publish')
+            response = redirect('/mission/?type=publish&status=processing')
         else:
             response = HttpResponseBadRequest('already finished')
     else:
