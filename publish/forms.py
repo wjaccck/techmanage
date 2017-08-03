@@ -62,7 +62,8 @@ class MissionForm(forms.ModelForm):
         instance = super(MissionForm, self).save(commit=False)
         if self.type:
             instance.type = self.type
-        instance.status = self.status
+        if self.status:
+            instance.status = self.status
         return instance.save()
 
     class Meta:
