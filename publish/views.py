@@ -194,7 +194,7 @@ def Generate_progress(req,mission_id):
             mission.status=Status.objects.get(name='processing')
             mission.start_date=datetime.now()
             mission.save()
-            response = redirect('/mission/')
+            response = redirect('/mission/?status=undo')
         else:
             response=HttpResponseBadRequest('already start')
     else:
